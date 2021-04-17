@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, {useState,useEffect} from 'react';
 import './App.css';
-
+import Heading from './components/Heading';
+import Loader from './components/Loader';
+import UnsplashImage from './components/UnsplashImage';
+import axios from 'axios';
+// import styled from 'styled-components';
+// import {createGlobalStyle}
 function App() {
+   const [images, setImages] = useState([]);
+
+    useEffect(()=>{
+        // const apiRoot = "https://api.unsplash.com";
+        const accessKey = "UubuOCBEhGKOmjLSA3rAmi99B4EDk-yKKRUTArhZeDU";
+           axios
+           .get(`https://api.unsplash.com/photos/random?client_id=${accessKey}&count=10`)
+           .then((res)=>{setImages([...images,...res.data])
+            },[])
+          // fetch(`https://api.unsplash.com/photos/random?client_id=${accessKey}&count=10`
+          // ).then((response)=>{response.json()}).then(
+          //   (data)=>{console.log("this is",data)}
+          // ).catch((error)=>{console.log("error is" ,error)})
+         });
+    
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Heading/>
+      <Loader/>
+      {images.map((image)=>(
+        <UnsplashImage url={image.urls.thumb} key={image.id}/>
+      ))}
     </div>
   );
 }
-
 export default App;
