@@ -1,15 +1,14 @@
 import React from 'react'
 import { CoverageMap } from 'istanbul-lib-coverage';
-// import styled from 'styled-components';
-// const Img = styled.img`
-//     width: 100%;
-//     height:100%;
-//     object-fit:cover;
-// `;
-
+import styled from 'styled-components';
+ 
+const Img = styled.img`
+height:300px;
+width:300px; 
+`;
 const UnsplashImage = ({url,key}) => {
     return (
-         <img src={url} key={key} alt = " " />
+         <Img src={url} key={key} onClick={} alt = " " />
            
     )
 }
