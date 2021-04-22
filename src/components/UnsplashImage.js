@@ -8,7 +8,7 @@ width:300px;
 `;
 const UnsplashImage = ({url,key}) => {
     return (
-         <Img src={url} key={key} onClick={} alt = " " />
+         <Img src={url} key={key} alt = " " />
            
     )
 }
